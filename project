@@ -1,0 +1,46 @@
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+class BinaryTree:
+    def __init__(self):
+        self.root = None
+        self.size = 0
+        self.list = []
+
+    def add_node(self, value):
+        new_node = Node(value)
+        if self.root is None:
+            self.root = new_node
+            self.list.append(new_node)
+        else:
+            current_node = self.root
+            while True:
+                if value < current_node.value:
+                    if current_node.left is None:
+                        current_node.left = new_node
+                        self.list.append(new_node)
+                        break
+                    else:
+                        current_node = current_node.left
+                else:
+                    if current_node.right is None:
+                        current_node.right = new_node
+                        self.list.append(new_node)
+                        break
+                    else:
+                        current_node = current_node.right
+        self.size += 1
+
+    def get_node(self, index):
+        if index < 0 or index >= self.size:
+            return None
+        return self.list[index]
+
+    def get_left_child(self, node):
+        return node.left
+
+    def get_right_child(self, node):
+        return node.right
